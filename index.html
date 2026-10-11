@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Moha Noor </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.7;
+            transition: background 0.6s ease;
+        }
+        body.normal-bg {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 50%, #ffd6e0 100%);
+        }
+        body.sad-bg {
+            background: linear-gradient(135deg, #2c2c38 0%, #3a3a52 50%, #1f1f2e 100%);
+            color: #d0d0e0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .normal-bg h1 { color: #b35c32; }
+        .sad-bg h1 { color: #a0a0c0; }
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .normal-bg .subtitle { color: #8b5a2b; }
+        .sad-bg .subtitle { color: #9090b0; }
+
+        .box {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        body.sad-bg .box {
+            background: #383850;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .box.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input {
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid #ffc996;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 300px;
+            margin: 1rem 0;
+            outline: none;
+        }
+        input:focus { border-color: #ff9e64; }
+        .sad-bg input {
+            background: #2a2a40;
+            border-color: #606090;
+            color: #e0e0f0;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin: 0.5rem;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .yes-btn { background: #74d674; color: #225522; }
+        .no-btn  { background: #f88383; color: #552222; }
+        .back-btn { background: #ddd; color: #444; }
+        .sad-bg .back-btn { background: #505080; color: #e0e0f0; }
+
+        .button-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .main-btn {
+            padding: 1.3rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+        .happy { background: #ffd93d; color: #5c4a00; }
+        .sad   { background: #a8d8ff; color: #003366; }
+        .miss  { background: #ffb3c6; color: #660033; }
+
+        .card {
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .card.show { display: block; }
+        .card h2 { margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .happy h2 { color: #e6b800; }
+        .sad h2   { color: #4a90e2; }
+        .miss h2  { color: #e066a3; }
+        .card p {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        .footer-note {
+            margin-top: 2rem;
+            font-style: italic;
+            color: #777;
+            font-size: 0.95rem;
+        }
+        .heart { color: #ff4d6d; font-size: 1.3rem; }
+        .broken-heart { color: #8888b0; font-size: 1.5rem; }
+    </style>
+</head>
+<body class="normal-bg">
+    <div class="container">
+
+        <!-- BOX 1: Password -->
+        <div id="box-password" class="box show">
+            <h1> For Moha Noor </h1>
+            <p class="subtitle">This is something special — only for you </p>
+            <p>Enter the password to continue:</p>
+            <input type="password" id="pwdInput" placeholder="Type here...">
+            <br>
+            <button class="btn yes-btn" onclick="checkPassword()">Unlock</button>
+            <p id="pwdError" style="color: #d63031; margin-top: 1rem; display: none;">Wrong password — try again</p>
+        </div>
+
+        <!-- BOX 2: First Yes/No Question -->
+        <div id="box-q1" class="box">
+            <h2>Are you ready to see this? </h2>
+            <p>This is just for you, Moha Noor — nobody else </p>
+            <button class="btn yes-btn" onclick="q1Yes()">Yes, I'm ready </button>
+            <button class="btn no-btn" onclick="q1No()">Not yet...</button>
+        </div>
+
+        <!-- BOX 3: Are You Sure? -->
+        <div id="box-q2" class="box">
+            <h2>Wait — are you really sure? 🥺</h2>
+            <p>I put a lot of heart into this... You won't regret seeing it </p>
+            <button class="btn yes-btn" onclick="q2Yes()">Yes, I'm sure — show me </button>
+            <button class="btn no-btn" onclick="q2No()">No, I'm not sure</button>
+        </div>
+
+        <!-- BOX 4: Be Serious / Heartbroken -->
+        <div id="box-sad" class="box">
+            <h2>Please... be serious 💔</h2>
+            <p>You're actually going to make me feel this way? I made it just for you, Moha Noor... and you keep hesitating? That hurts more than you know <span class="broken-heart">💔💔💔</span></p>
+            <button class="back-btn" onclick="goToQ1()">Go back and be honest</button>
+        </div>
+
+        <!-- MAIN SURPRISE: 3 Buttons -->
+        <div id="mainSection" style="display: none;">
+            <h1> For Moha Noor </h1>
+            <p class="subtitle">Because you're honestly the best guy I know </p>
+
+            <div class="button-grid">
+                <button class="main-btn happy" onclick="showCard('happy')">
+                     Press Here If You're Happy
+                </button>
+                <button class="main-btn sad" onclick="showCard('sad')">
+                     Press Here If You're Feeling Down
+                </button>
+                <button class="main-btn miss" onclick="showCard('miss')">
+                     Press Here If You Miss Me
+                </button>
+            </div>
+
+            <div id="card-happy" class="card">
+                <h2> When You're Happy</h2>
+                <p>Moha Noor sasa umefurahi nn npee mosheneee....lakini  seeing you happy honestly makes my whole day brighter. You have this way of making everything feel lighter just by being you.</p>
+                <p>You're such a good person, and you deserve every single good thing that comes your way. Never forget how amazing you are.</p>
+                <p>P.S. I promise I'll try not to keep apologizing for things that aren't even your fault... even if I do it again, just know it's because I care about being right with you </p>
+                <button class="back-btn" onclick="backToMain()">← Go Back</button>
+            </div>
+
+            <div id="card-sad" class="card">
+                <h2> When You're Feeling Down</h2>
+                <p>Hey Moha... I wish I could give you a big hug right now .eti ndo usikasrike . Please remember  you don't have to carry everything alone.its ok not to be okay.</p>
+                <p>And I'm really sorry if I ever made you feel like you had to say sorry when it wasn't even your place. You're so good to me, and I want you to know: I see you. I appreciate you. And your feelings matter more than anything.</p>
+                <p>I might not say it perfectly, but I'll always be here for you. No apologies needed from you  ever. </p>
+                <button class="back-btn" onclick="backToMain()">← Go Back</button>
+            </div>
+
+            <div id="card-miss" class="card">
+                <h2> When You Miss Me</h2>
+                <p>Well... Moha Noor, the feeling is very much mutual eti am missing u tooo . Like... more than I probably elewa </p>
+                <p>You're the kind of person people actually miss when you're not around.sio chocha nkwelii jamaani  And I'm definitely one of them heeh. All those times I make you apologize... maybe it's just nataka to sure we keep talking. Don't tell anyone siri ya wawili hii </p>
+                <p>Truth is: I think about you more than I let on. And I really, really like having you in my life. More than "just friends" might cover... but I'll let you figure that part out yourself </p>
+                <button class="back-btn" onclick="backToMain()">← Go Back</button>
+            </div>
+
+            <p class="footer-note">
+                Made just for you, Moha Noor <span class="heart">❤</span><br>
+                Don't ever change  you're perfect exactly as you are.<br>
+                P.P.S. Every word here comes from the heart .hehehe.. I mean every single one sawa
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // --- CUSTOM PASSWORD SET HERE ---
+        const PASSWORD = 'moha_noor_best'; // This is your password
+
+        function hideAllBoxes() {
+            document.querySelectorAll('.box').forEach(b => b.classList.remove('show'));
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('pwdInput').value.trim();
+            if (input === PASSWORD) {
+                hideAllBoxes();
+                document.getElementById('box-q1').classList.add('show');
+                document.body.classList.remove('sad-bg');
+                document.body.classList.add('normal-bg');
+            } else {
+                document.getElementById('pwdError').style.display = 'block';
+            }
+        }
+
+        function q1Yes() {
+            hideAllBoxes();
+            document.getElementById('mainSection').style.display = 'block';
+        }
+
+        function q1No() {
+            hideAllBoxes();
+            document.getElementById('box-q2').classList.add('show');
+        }
+
+        function q2Yes() {
+            hideAllBoxes();
+            document.getElementById('mainSection').style.display = 'block';
+        }
+
+        function q2No() {
+            hideAllBoxes();
+            document.getElementById('box-sad').classList.add('show');
+            document.body.classList.remove('normal-bg');
+            document.body.classList.add('sad-bg');
+        }
+
+        function goToQ1() {
+            hideAllBoxes();
+            document.getElementById('box-q1').classList.add('show');
+            document.body.classList.remove('sad-bg');
+            document.body.classList.add('normal-bg');
+        }
+
+        function showCard(type) {
+            document.querySelector('.button-grid').style.display = 'none';
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('show'));
+            document.getElementById(`card-${type}`).classList.add('show');
+        }
+
+        function backToMain() {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('show'));
+            document.querySelector('.button-grid').style.display = 'grid';
+        }
+    </script>
+</body>
+</html>
